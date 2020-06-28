@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -58,7 +59,6 @@ public class DisciplinaController {
 		}
 	}
 	
-	
 	@PutMapping("/v1/api/disciplinas/{id}/nota")
 	public ResponseEntity<Disciplina> editNota(@PathVariable int id, @RequestBody Disciplina disciplina) {
 		try {
@@ -67,5 +67,20 @@ public class DisciplinaController {
 		catch (IndexOutOfBoundsException ex) {
 			return new ResponseEntity<Disciplina>(new Disciplina(0, null, null), HttpStatus.NOT_FOUND);
 		}
+	}
+	
+	@DeleteMapping("/v1/api/disciplinas/{id}")
+	public ResponseEntity<Disciplina> delDisciplina(@PathVariable int id) {
+		try {
+			return new ResponseEntity<Disciplina>(service.delDisciplina(id), HttpStatus.OK);
+		}
+		catch (IndexOutOfBoundsException ex) {
+			return new ResponseEntity<Disciplina>(new Disciplina(0, null, null), HttpStatus.NOT_FOUND);
+		}
+	}
+	
+	@GetMapping("/v1/api/disciplinas/ranking")
+	public ResponseEntity<List<Disciplina>> getRanking() {
+		return new ResponseEntity<List<Disciplina>>(service.getRanking(), HttpStatus.OK);
 	}
 }

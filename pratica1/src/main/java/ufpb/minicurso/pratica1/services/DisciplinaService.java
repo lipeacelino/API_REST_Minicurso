@@ -1,6 +1,7 @@
 package ufpb.minicurso.pratica1.services;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -45,5 +46,19 @@ public class DisciplinaService {
 		disc.setNota(disciplina.getNota());
 		return disc;
 	}
+
+	public Disciplina delDisciplina(int id) {
+		Disciplina disc = this.getDisciplina(id);
+		discList.remove(disc);
+		return disc;
+	}
+
+	public List<Disciplina> getRanking() {
+		List<Disciplina> listaOrdenada = new ArrayList<Disciplina>(discList);
+		Collections.sort(listaOrdenada, Collections.reverseOrder());
+		return listaOrdenada;
+	}
+	
+	
 	
 }

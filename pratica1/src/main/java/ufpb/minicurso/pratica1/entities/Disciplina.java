@@ -1,6 +1,6 @@
 package ufpb.minicurso.pratica1.entities;
 
-public class Disciplina {
+public class Disciplina implements Comparable<Disciplina> {
 
 	private int id;
 	private String nome;
@@ -37,8 +37,9 @@ public class Disciplina {
 	}
 
 	@Override
-	public String toString() {
-		return "Disciplina [id=" + id + ", nome=" + nome + ", nota=" + nota + "]";
+	public int compareTo(Disciplina o) {
+		return this.getNota().compareTo(o.getNota());
 	}
-
+	
+	
 }
