@@ -57,6 +57,4 @@ public class DisciplinaService {
 		return listaOrdenada;
 	}
 	
-	
-	
 }

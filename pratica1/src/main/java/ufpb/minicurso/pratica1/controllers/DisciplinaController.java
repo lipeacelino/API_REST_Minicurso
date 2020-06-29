@@ -83,4 +83,5 @@ public class DisciplinaController {
 	public ResponseEntity<List<Disciplina>> getRanking() {
 		return new ResponseEntity<List<Disciplina>>(service.getRanking(), HttpStatus.OK);
 	}
+	
 }
