@@ -23,8 +23,6 @@ public class DisciplinaService {
 		discList.add(disciplina);
 		
 		return disciplina;
-		
-		//System.out.println(discList.get(discList.size()-1));
 	}
 
 	public List<Disciplina> getDisciplinas() {

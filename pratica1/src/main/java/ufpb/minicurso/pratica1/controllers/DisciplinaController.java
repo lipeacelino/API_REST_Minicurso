@@ -26,7 +26,7 @@ public class DisciplinaController {
 	
 	@GetMapping()
 	public String index() {
-		return "Welcome to API! :)";
+		return "Welcome to API! ( ͡❛ ͜ʖ ͡❛)";
 	}
 
 	@PostMapping("/v1/api/disciplinas")
