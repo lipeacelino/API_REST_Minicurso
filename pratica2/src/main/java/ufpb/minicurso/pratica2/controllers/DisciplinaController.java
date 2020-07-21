@@ -67,11 +67,16 @@ public class DisciplinaController {
 	
 	//GET /api/disciplinas/ranking/notas Retorna todas as disciplinas inseridas no sistema ordenadas pela nota (da maior para a menor) e código 200.
 	
-	//@GetMapping
-	public List<Disciplina> getDiscByNotaDec() {
-		return null;
+	@GetMapping("/ranking/notas")
+	public List<Disciplina> getDiscByNotaDesc() {
+		return discServ.getDisciplinasByNotaDesc();
 	}
 	
 	//GET /api/disciplinas/ranking/likes Retorna todas as disciplinas inseridas no sistema ordenadas pelo número de likes (da que tem mais likes para a que tem menos likes) e código 200.
+	
+	@GetMapping("/ranking/likes")
+	public List<Disciplina> getDiscByLikesDesc() {
+		return discServ.getDisciplinasByLikesDesc();
+	}
 	
 }

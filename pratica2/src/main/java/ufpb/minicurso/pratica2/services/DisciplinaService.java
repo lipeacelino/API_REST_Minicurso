@@ -2,6 +2,7 @@ package ufpb.minicurso.pratica2.services;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import java.util.Optional;
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -44,15 +46,18 @@ public class DisciplinaService {
 		return discRep.findAll();
 	}
 	
-	/*
-	public List<Disciplina> getDisciplinas() {
-		return discRep.findAll().sort(c);;
+	public List<Disciplina> getDisciplinasByNotaDesc() {
+		return discRep.findAll(Sort.by(Sort.Direction.DESC, "nota"));
 	}
-*/
+	
+	public List<Disciplina> getDisciplinasByLikesDesc() {
+		return discRep.findAll(Sort.by(Sort.Direction.DESC, "likes"));
+	}
+	
 	public Optional<Disciplina> getById(Long id) {
 		return discRep.findById(id);
 	}
-
+	
 	public Optional<Disciplina> editLike(Long id, int qtdLike) {
 		Optional<Disciplina> disc = this.discRep.findById(id);
 		disc.get().setLikes(disc.get().getLikes() + qtdLike);
@@ -89,4 +94,6 @@ public class DisciplinaService {
 		
 		return disc;
 	}
+
+	
 }

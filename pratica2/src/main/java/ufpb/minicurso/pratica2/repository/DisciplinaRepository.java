@@ -8,4 +8,5 @@ import ufpb.minicurso.pratica2.entities.Disciplina;
 @Repository
 public interface DisciplinaRepository extends JpaRepository<Disciplina, Long> {
 
+	
 }
