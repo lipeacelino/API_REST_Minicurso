@@ -2,11 +2,10 @@ package ufpb.minicurso.pratica2.services;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
@@ -54,8 +53,12 @@ public class DisciplinaService {
 		return discRep.findAll(Sort.by(Sort.Direction.DESC, "likes"));
 	}
 	
-	public Optional<Disciplina> getById(Long id) {
-		return discRep.findById(id);
+	public Disciplina getById(Long id){
+		Optional<Disciplina> disc = discRep.findById(id);
+		if (disc.isEmpty()) {
+			throw new NoSuchElementException();
+		}
+		return disc.get();
 	}
 	
 	public Optional<Disciplina> editLike(Long id, int qtdLike) {
@@ -65,10 +68,14 @@ public class DisciplinaService {
 		return disc;
 	}
 
-	public Optional<Disciplina> editNota(Long id, Double novaNota) {
+	public Disciplina editNota(Long id, Double novaNota) {
 
 		Optional<Disciplina> disc = this.discRep.findById(id);
-
+		
+		if (disc.isEmpty()) {
+			throw new NoSuchElementException();
+		}
+		
 		if (disc.get().getNota() == null) {
 			disc.get().setNota(novaNota);
 		} else {
@@ -77,12 +84,16 @@ public class DisciplinaService {
 		
 		this.discRep.save(disc.get());
 		
-		return disc;
+		return disc.get();
 	}
 
-	public Optional<Disciplina> editComent(Long id, String comentario) {
+	public Disciplina editComent(Long id, String comentario) {
 		
 		Optional<Disciplina> disc = this.discRep.findById(id);
+		
+		if (disc.isEmpty()) {
+			throw new NoSuchElementException();
+		}
 		
 		if (disc.get().getComentarios() == null) {
 			disc.get().setComentarios(comentario);
@@ -92,7 +103,7 @@ public class DisciplinaService {
 		
 		discRep.save(disc.get());
 		
-		return disc;
+		return disc.get();
 	}
 
 	
