@@ -60,18 +60,15 @@ public class DisciplinaService {
 		return disc;
 	}
 
-	public Optional<Disciplina> editNota(Long id, double novaNota) {
-	 /*
-	  * Para fazer esse método eu considerei que os alunos só podem dar notas de 1 a 10. 
-	  * Sendo assim, A média 0 só existirá se ainda não tiver sido inserida nenhuma nota.
-	  */
+	public Optional<Disciplina> editNota(Long id, Double novaNota) {
+
 		Optional<Disciplina> disc = this.discRep.findById(id);
-		
-		if (disc.get().getNota() == 0) {
+
+		if (disc.get().getNota() == null) {
 			disc.get().setNota(novaNota);
 		} else {
-			disc.get().setNota((disc.get().getNota() + novaNota) / 2);
-		}
+			disc.get().setNota((disc.get().getNota() + novaNota) /2);
+		} 
 		
 		this.discRep.save(disc.get());
 		

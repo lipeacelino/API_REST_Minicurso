@@ -15,7 +15,7 @@ public class Disciplina {
 	@GeneratedValue
 	private Long id;
 	private String nome;
-	private double nota;
+	private Double nota;
 	private String comentarios;
 	private int likes;
 	
