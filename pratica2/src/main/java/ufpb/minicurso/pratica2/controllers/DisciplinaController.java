@@ -1,7 +1,7 @@
 package ufpb.minicurso.pratica2.controllers;
 
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class DisciplinaController {
 	//Retorna a disciplina que foi atualizada (incluindo o id, nome e likes) e código 200. 
 	//Ou não retorna JSON e código 404 (not found) caso o id passado não tenha sido encontrado.
 	@PutMapping("likes/{id}")
-	public Optional<Disciplina> editLike(@PathVariable Long id, @RequestBody HashMap<String, Integer> qtdLikes) {
+	public Optional<Disciplina> editLike(@PathVariable Long id, @RequestBody Map<String, Integer> qtdLikes) {
 		return discServ.editLike(id, qtdLikes.get("likes").intValue());
 	}
 	
@@ -49,8 +49,8 @@ public class DisciplinaController {
 	//Se for a primeira nota sendo adicionada então esta nota é a que vai valer para a disciplina. 
 	//Retorna a disciplina que foi atualizada (incluindo o id, nome e nota) e código 200. Ou não retorna JSON e código 404 (not found) caso o id passado não tenha sido encontrado.
 	@PutMapping("nota/{id}")
-	public Disciplina editNota(@PathVariable Long id, @RequestBody Disciplina d) {
-		return null;
+	public Optional<Disciplina> editNota(@PathVariable Long id, @RequestBody Map<String, Double> nota) {
+		return discServ.editNota(id, nota.get("nota"));
 	}
 	
 	//PUT /api/disciplinas/comentarios/{id} Insere um novo comentário na disciplina de identificador id. 
@@ -58,15 +58,19 @@ public class DisciplinaController {
 	//Retorna a disciplina que foi atualizada (incluindo o id, nome e os comentarios atualizados) e código 200. 	
 	//Ou não retorna JSON e código 404 (not found) caso o id passado não tenha sido encontrado.
 	@PutMapping("comentarios/{id}")
-	public Disciplina editComent(@PathVariable Long id, @RequestBody Disciplina d) {
-		return null;
+	public Optional<Disciplina> editComent(@PathVariable Long id, @RequestBody Map<String, String> comentario) {
+		return discServ.editComent(id, comentario.get("comentarios"));
 	}
 	
 	
 
 	
 	//GET /api/disciplinas/ranking/notas Retorna todas as disciplinas inseridas no sistema ordenadas pela nota (da maior para a menor) e código 200.
-
+	
+	//@GetMapping
+	public List<Disciplina> getDiscByNotaDec() {
+		return null;
+	}
 	
 	//GET /api/disciplinas/ranking/likes Retorna todas as disciplinas inseridas no sistema ordenadas pelo número de likes (da que tem mais likes para a que tem menos likes) e código 200.
 	

@@ -6,6 +6,7 @@ import javax.persistence.Id;
 
 import lombok.Data;
 
+
 @Entity
 @Data
 public class Disciplina {
@@ -14,8 +15,15 @@ public class Disciplina {
 	@GeneratedValue
 	private Long id;
 	private String nome;
-	private Double nota;
+	private double nota;
 	private String comentarios;
 	private int likes;
+	
+	/*
+	@Override
+	public int compareTo(Disciplina o) {
+		return this.getNota().compareTo(o.getNota());
+	}
+	*/
 	
 }
