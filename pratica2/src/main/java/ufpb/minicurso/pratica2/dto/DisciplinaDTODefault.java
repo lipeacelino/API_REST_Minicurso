@@ -5,10 +5,6 @@ import ufpb.minicurso.pratica2.entities.Disciplina;
 
 import org.modelmapper.ModelMapper;
 
-
-/**
- * Essa classe deve ser usada no método getDisciplina()
- */
 @Data
 public class DisciplinaDTODefault {
 	
