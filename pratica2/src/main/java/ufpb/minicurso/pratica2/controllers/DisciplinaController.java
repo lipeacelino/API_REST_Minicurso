@@ -78,23 +78,21 @@ public class DisciplinaController {
 	}
 	
 	//GET /api/disciplinas/ranking/notas Retorna todas as disciplinas inseridas no sistema ordenadas pela nota (da maior para a menor) e código 200.
-	
 	@GetMapping("/ranking/notas")
-	public List<DisciplinaDTODefault> getDiscByNotaDesc() {
-		return this.discServ.getDisciplinasByNotaDesc()
+	public ResponseEntity<List<DisciplinaDTODefault>> getDiscByNotaDesc() {
+		return new ResponseEntity<List<DisciplinaDTODefault>> (this.discServ.getDisciplinasByNotaDesc()
 				.stream()
 				.map(d -> DisciplinaDTODefault.create(d))
-				.collect(Collectors.toList());
+				.collect(Collectors.toList()), HttpStatus.OK);
 	}
 	
 	//GET /api/disciplinas/ranking/likes Retorna todas as disciplinas inseridas no sistema ordenadas pelo número de likes (da que tem mais likes para a que tem menos likes) e código 200.
-	
 	@GetMapping("/ranking/likes")
-	public List<DisciplinaDTODefault> getDiscByLikesDesc() {
-		return this.discServ.getDisciplinasByLikesDesc()
+	public ResponseEntity<List<DisciplinaDTODefault>> getDiscByLikesDesc() {
+		return new ResponseEntity<List<DisciplinaDTODefault>> (this.discServ.getDisciplinasByLikesDesc()
 				.stream()
 				.map(d -> DisciplinaDTODefault.create(d))
-				.collect(Collectors.toList());
+				.collect(Collectors.toList()), HttpStatus.OK);
 	}
 	
 }
